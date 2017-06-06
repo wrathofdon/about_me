@@ -21,10 +21,10 @@ function checkScore(guess, solution) {
   var message = '';
   if (guess == solution) {
     score ++;
-    message = 'Correct, your score is now ' + score + '. ';
+    message = 'Correct, your score is now ' + score + '.\n\n';
   } else {
     score --;
-    message = 'Wrong, your score is now ' + score + '. ';
+    message = 'Wrong, your score is now ' + score + '.\n\n';
   }
   return(message);
 };
@@ -38,7 +38,7 @@ for (var i = 0; i < 5; i++) {
     if (answer) {
       intro = checkScore(answer, correct.slice(i, i + 1));
     } else {
-      intro = 'That\'s not a valid response! ';
+      intro = 'That\'s not a valid response!\n\n';
     }
   };
 }
