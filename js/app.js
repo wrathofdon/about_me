@@ -5,7 +5,7 @@ var intro = '';
 var score = 0;
 var answer = false;
 // question list
-var questions = ['First question: Does Don contain three letters?', 'Second question: Does Don start with a \D\'', 'Third question: Does Don end with an \'n\'?', 'Fourth question: Does Don contain a vowel?', 'Fifth question: Is Don a palindrome?'];
+var questions = ['First question: Does Don contain three letters?', 'Second question: Does Don start with a \'D\'', 'Third question: Does Don end with an \'n\'?', 'Fourth question: Does Don contain a vowel?', 'Fifth question: Is Don a palindrome?'];
 // answer key
 var correct = ['y', 'y', 'y', 'y', 'n'];
 
@@ -36,11 +36,11 @@ function checkScore(guess, solution) {
 for (var i = 0; i < 5; i++) {
   answer = false;
   while (!answer) {
-    var question = questions.slice(i, i + 1);
+    var question = questions[i];
     answer = checkAnswer(prompt(intro + question));
     console.log(question + ' ' + answer);
     if (answer) {
-      intro = checkScore(answer, correct.slice(i, i + 1));
+      intro = checkScore(answer, correct[i]);
     } else {
       intro = 'That\'s not a valid response!\n\n';
     }
