@@ -1,13 +1,16 @@
 'use strict';
 
+// first line of next prompt
 var intro = '';
 var score = 0;
 var answer = false;
+// question list
+var questions = ['First question: Does Don contain three letters?', 'Second question: Does Don start with a \D\'', 'Third question: Does Don end with an \'n\'?', 'Fourth question: Does Don contain a vowel?', 'Fifth question: Is Don a palindrome?'];
+// answer key
 var correct = ['y', 'y', 'y', 'y', 'n'];
 
-var questions = ['First question: Does Don contain three letters?', 'Second question: Does Don start with a \D\'', 'Third question: Does Don end with an \'n\'?', 'Fourth question: Does Don contain a vowel?', 'Fifth question: Is Don a palindrome?']
-
 function checkAnswer(guess) {
+  // returns first letter if code is valid, false if not
   var temp = guess.toLowerCase();
   if (temp && (temp == 'yes' || temp == 'y' || temp == 'no' || temp == 'n')) {
     temp = guess.slice(0, 1);
@@ -18,6 +21,7 @@ function checkAnswer(guess) {
 }
 
 function checkScore(guess, solution) {
+  // verifies if score is correct, updates score and first line of next prompt
   var message = '';
   if (guess == solution) {
     score ++;
@@ -34,7 +38,7 @@ for (var i = 0; i < 5; i++) {
   while (!answer) {
     var question = questions.slice(i, i + 1);
     answer = checkAnswer(prompt(intro + question));
-    console.log(question + " " + answer);
+    console.log(question + ' ' + answer);
     if (answer) {
       intro = checkScore(answer, correct.slice(i, i + 1));
     } else {
@@ -43,4 +47,4 @@ for (var i = 0; i < 5; i++) {
   };
 }
 
-alert(intro + "You should be very proud of yourself.");
+alert(intro + 'You should be very proud of yourself.');
