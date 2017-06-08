@@ -1,3 +1,13 @@
-body {
+#background {
     background-image: url("https://c1.staticflickr.com/5/4052/4333573403_2fd304cdea_b.jpg");
+    background-size: cover;
+    background-attachment: fixed;
+    position:absolute;
+    top:0; right:0;
+    bottom:0; left:0;
+    padding: 10px;
+}
+
+* {
+  font-family:sans-serif;
 }
