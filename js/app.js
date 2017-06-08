@@ -22,11 +22,13 @@ intro = 'I\'m glad you finally showed up, ' + myName + '. Let\'s play a game to 
 
 for (var i = 0; i < 5; i++) {
   guess = null;
+  // code only escapes loop if you have an answer that can be found in the array)
   while (!guess || ['yes', 'y', 'no', 'n'].indexOf(guess.toLowerCase()) == -1) {
     guess = prompt(intro + questions[i]);
     intro = 'That\'s not a valid response!  Answer "yes" or "no" only.\n\n';
     console.log(questions[i] + ': ' + guess);
   }
+  // valid answers are reduced to one letter and then compared to key
   if (guess.toLowerCase().slice(0,1) == answerKey[i]){
     score++;
     intro = 'Correct!  Your score is now ' + score + ' points.\n\n';
@@ -35,8 +37,11 @@ for (var i = 0; i < 5; i++) {
   }
 }
 
+// since guess from previous question is 'y' or 'n', while loop starts automatically
+
 while (guess != 28 && remain > 0) {
   guess = NaN;
+  // only numbers are valid
   while (isNaN(guess)) {
     guess = parseInt(prompt(intro + 'How many teeth does Don currently have?\n\n' + remain + ' guesses remaining.\n\n'));
     intro = 'Invalid response.  Please enter a number. \n\n';
@@ -47,6 +52,8 @@ while (guess != 28 && remain > 0) {
     intro = 'Wrong! Go lower.\n\n';
   } else if (guess < 28) {
     intro = 'Wrong! Go higher.\n\n';
+  } else {
+    pass;
   }
 }
 
