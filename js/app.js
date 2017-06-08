@@ -53,7 +53,7 @@ while (guess != 28 && remain > 0) {
   } else if (guess < 28) {
     intro = 'Wrong! Go higher.\n\n';
   } else {
-    pass;
+    break;
   }
 }
 
