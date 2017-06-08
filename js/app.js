@@ -12,6 +12,7 @@ var summary = '';
 var guess = null;
 var myName;
 var cities = ['newcastle', 'bellevue', 'seattle', 'renton', 'auburn', 'tacoma'];
+var teeth = 28;
 
 while (!myName) {
   myName = prompt('Hi there, welcome to my page!  What is your name?');
@@ -47,7 +48,7 @@ function checkAnswer(answer, guess) {
 }
 // since guess from previous question is 'y' or 'n', while loop starts automatically
 
-while (guess != 28 && remain > 0) {
+while (guess != teeth && remain > 0) {
   guess = NaN;
   // only numbers are valid
   while (isNaN(guess)) {
@@ -56,12 +57,15 @@ while (guess != 28 && remain > 0) {
   }
   remain --;
   console.log('Teeth guess #' + (4 - remain) + ': ' + guess);
-  if (guess > 28) {
-    intro = 'Wrong! Go lower.\n\n';
-  } else if (guess < 28) {
-    intro = 'Wrong! Go higher.\n\n';
+  intro = checkTeeth(guess);
+}
+function checkTeeth(guess){
+  if (guess > teeth) {
+    return('Wrong! Go lower.\n\n');
+  } else if (guess < teeth) {
+    return('Wrong! Go higher.\n\n');
   } else {
-    break;
+    return('');
   }
 }
 
@@ -75,7 +79,10 @@ if (guess == 28) {
 guess = 'bad';
 remain = 6;
 
-while (cities.indexOf(guess.toLowerCase()) == -1 && remain > 0) {
+function checkCities(guess){
+  return(cities.indexOf(guess.toLowerCase()) > -1);
+}
+while (!checkCities(guess) && remain > 0) {
   guess = null;
   while (!guess) {
     guess = prompt(intro + 'Final question: Don has lived in 6 different cities.  Can you name one?\n\n' + remain + ' guesses remaining.');
@@ -86,7 +93,7 @@ while (cities.indexOf(guess.toLowerCase()) == -1 && remain > 0) {
   intro = 'Wrong!\n\n';
 }
 
-if (cities.indexOf(guess.toLowerCase()) > -1) {
+if (checkCities(guess)) {
   score += 3;
   intro = 'Correct!  You scored a total of ' + score + ' points.\n\n';
 } else {
