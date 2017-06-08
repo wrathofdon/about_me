@@ -10,7 +10,14 @@ var questions = ['First question: Does Don contain three letters?', 'Second ques
 var answerKey = ['y', 'y', 'y', 'y', 'n'];
 var remain = 4;
 var summary = '';
-var guess;
+var guess = null;
+var name;
+
+while (!name) {
+  name = prompt('Hi there, welcome to my page!  What is your name?');
+}
+
+alert('I\'m glad you finally showed up, ' + name + '. Let\'s play a game to see how well you know Don.');
 
 for (var i = 0; i < 5; i++) {
   guess = null
@@ -57,20 +64,20 @@ while (!guess) {
 console.log('City guess: ' + guess);
 if (['newcastle', 'bellevue', 'seattle', 'renton', 'auburn', 'tacoma'].indexOf(guess.toLowerCase()) > -1) {
   score++;
-  intro = 'Correct!  Your final tally is now ' + score + ' points.\n\n';
+  intro = 'Correct!  Your final tally is ' + score + ' points.\n\n';
 } else {
-  intro = 'Wrong!  Your final tally is now ' + score + ' points.\n\n';
+  intro = 'Wrong!  Your final tally is ' + score + ' points.\n\n';
 }
 
 if (score == 11) {
-  summary = 'Congrats on a perfect score!';
-} else if (score > 6) {
-  summary = 'That\'s way above average!';
+  summary = 'Congrats on a perfect score, ' + name + '!';
+} else if (score > 7) {
+  summary = 'That\'s way above average, ' + name + '!';
 } else if (score > 3) {
-  summary = 'Better study harder next time.';
+  summary = 'Better study harder next time, ' + name + '.';
 } else if (score > 0) {
-  summary = 'You would have been better off with random guessing.';
+  summary = 'You would have been better off with random guessing, ' + name + '.';
 } else {
-  summary = 'Were you trying to bomb on purpose?';
+  summary = 'Were you trying to bomb on purpose, ' + name + '?';
 }
 alert(intro + summary);
