@@ -1,0 +1,74 @@
+'use strict';
+
+// first line of next prompt
+var intro = '';
+var score = 0;
+var answer = false;
+// question list
+var questions = ['First question: Does Don contain three letters?', 'Second question: Does Don start with a \'D\'', 'Third question: Does Don end with an \'n\'?', 'Fourth question: Does Don contain a vowel?', 'Fifth question: Is Don a palindrome?'];
+// answer key
+var answerKey = ['y', 'y', 'y', 'y', 'n'];
+var remain = 4;
+var summary = '';
+var guess;
+
+for (var i = 1; i < 5; i++) {
+  guess = null
+  while (!guess || ['yes', 'y', 'no', 'n'].indexOf(guess) == -1) {
+    guess = prompt(intro + questions[i]);
+    intro = 'That\'s not a valid response!  Answer "yes" or "no" only.\n\n'
+  }
+  if (guess.slice(0,1) == answerKey[i]){
+    score++;
+    intro = 'Correct!  Your score is now ' + score + ' points./n/n'
+  } else {
+    intro = 'Wrong!  Your score remains at ' + score + ' points./n/n'
+  }
+}
+
+while (guess != 28 && remain > 0) {
+  guess = NaN;
+  while (isNan(guess)) {
+    guess = parseInt(prompt(intro + 'How many teeth does Don currently have? This is worth ' + remain + ' points.\n\n'));
+    intro = 'Invalid response.  Please enter a number. \n\n';
+  }
+  remain --;
+  if (guess > 28) {
+    var direction = 'Go lower.';
+  } else if (guess < 28) {
+    var direction = 'Go higher.'
+  }
+  intro = "Wrong! " + direction + ' You have ' + remain + 'guesses left.\n\n'
+}
+
+if (guess == 28) {
+  score = score + remain + 1;
+  intro = 'Correct!  Your score is now ' + score + '.\n\n'
+} else {
+  intro = 'Wrong!  No more guesses!  Your score remains at ' + score + '.\n\n'
+}
+
+guess = null;
+intro = '';
+
+while (!guess) {
+  guess = prompt(intro + 'Final question: Don has lived in 6 different cities.  Can you name one?')
+}
+if (['newcastle', 'bellevue', 'seattle', 'renton', 'auburn', 'tacoma'].indexOf(guess.toLowerCase()) > -1) {
+  score++;
+  intro = 'Correct!  Your final tally is now ' + score + ' points.\n\n'
+} else {
+  intro = 'Wrong!  Your final tally is now ' + score + ' points.\n\n'
+}
+
+if (score == 10) {
+  summary = 'Congrats on a perfect score!'
+} else if (score > 5) {
+  summary = 'That\'s way above average!'
+} else if (score > 3) {
+  summary = 'Better study harder next time.'
+} else if (score > 0) {
+  summary = 'You would have been better off with random guessing.'
+} else {
+  summary = 'Were you trying to bomb on purpose?'
+}
