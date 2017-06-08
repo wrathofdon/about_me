@@ -29,14 +29,22 @@ for (var i = 0; i < 5; i++) {
     console.log(questions[i] + ': ' + guess);
   }
   // valid answers are reduced to one letter and then compared to key
-  if (guess.toLowerCase().slice(0,1) == answerKey[i]){
+  intro = checkAnswer(answerKey[i], guess);
+  // if (guess.toLowerCase().slice(0,1) == answerKey[i]){
+  //   score++;
+  //   intro = 'Correct!  Your score is now ' + score + ' points.\n\n';
+  // } else {
+  //   intro = 'Wrong!  Your score remains at ' + score + ' points.\n\n';
+  // }
+}
+function checkAnswer(answer, guess) {
+  if (guess.slice(0,1) == answer){
     score++;
-    intro = 'Correct!  Your score is now ' + score + ' points.\n\n';
+    return('Correct!  Your score is now ' + score + ' points.\n\n');
   } else {
-    intro = 'Wrong!  Your score remains at ' + score + ' points.\n\n';
+    return('Wrong!  Your score remains at ' + score + ' points.\n\n');
   }
 }
-
 // since guess from previous question is 'y' or 'n', while loop starts automatically
 
 while (guess != 28 && remain > 0) {
