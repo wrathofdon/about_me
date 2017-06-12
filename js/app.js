@@ -13,6 +13,7 @@ var guess = null;
 var myName;
 var cities = ['newcastle', 'bellevue', 'seattle', 'renton', 'auburn', 'tacoma'];
 var teeth = 28;
+var right = 0;
 
 while (!myName) {
   myName = prompt('Hi there, welcome to my page!  What is your name?');
@@ -41,6 +42,7 @@ for (var i = 0; i < 5; i++) {
 function checkAnswer(answer, guess) {
   if (guess.slice(0,1) == answer){
     score++;
+    right++;
     return('Correct!  Your score is now ' + score + ' points.\n\n');
   } else {
     return('Wrong!  Your score remains at ' + score + ' points.\n\n');
@@ -48,17 +50,56 @@ function checkAnswer(answer, guess) {
 }
 // since guess from previous question is 'y' or 'n', while loop starts automatically
 
-while (guess != teeth && remain > 0) {
-  guess = NaN;
-  // only numbers are valid
-  while (isNaN(guess)) {
-    guess = parseInt(prompt(intro + 'How many teeth does Don currently have?\n\n' + remain + ' guesses remaining.\n\n'));
-    intro = 'Invalid response.  Please enter a number. \n\n';
+function askQuestions() {
+  while (guess != teeth && remain > 0) {
+    guess = NaN;
+    // only numbers are valid
+    while (isNaN(guess)) {
+      guess = parseInt(prompt(intro + 'How many teeth does Don currently have?\n\n' + remain + ' guesses remaining.\n\n'));
+      intro = 'Invalid response.  Please enter a number. \n\n';
+    }
+    remain --;
+    console.log('Teeth guess #' + (4 - remain) + ': ' + guess);
+    intro = checkTeeth(guess);
   }
-  remain --;
-  console.log('Teeth guess #' + (4 - remain) + ': ' + guess);
-  intro = checkTeeth(guess);
+
+
+  if (guess == 28) {
+    score += 3;
+    right++;
+    intro = 'Correct!  Your score is now ' + score + '.\n\n';
+  } else {
+    intro = 'Wrong!  No more guesses!  Your score remains at ' + score + '.\n\n';
+  }
+
+  guess = 'bad';
+  remain = 6;
+
+
+  while (!checkCities(guess) && remain > 0) {
+    guess = null;
+    while (!guess) {
+      guess = prompt(intro + 'Final question: Don has lived in 6 different cities.  Can you name one?\n\n' + remain + ' guesses remaining.');
+      intro = 'Don\'t give up that easily! \n\n';
+      console.log('City Guess #' + (6 - remain) + ': ' + guess);
+    }
+    remain --;
+    intro = 'Wrong!\n\n';
+  }
+
+  if (checkCities(guess)) {
+    score += 3;
+    right++;
+    intro = 'Correct!  You scored a total of ' + score + ' points.\n\n';
+  } else {
+    intro = 'Wrong!  You scored a total of ' + score + ' points.\n\n';
+  }
 }
+
+function checkCities(guess){
+  return(cities.indexOf(guess.toLowerCase()) > -1);
+}
+
 function checkTeeth(guess){
   if (guess > teeth) {
     return('Wrong! Go lower.\n\n');
@@ -69,37 +110,9 @@ function checkTeeth(guess){
   }
 }
 
-if (guess == 28) {
-  score += 3;
-  intro = 'Correct!  Your score is now ' + score + '.\n\n';
-} else {
-  intro = 'Wrong!  No more guesses!  Your score remains at ' + score + '.\n\n';
-}
+askQuestions();
 
-guess = 'bad';
-remain = 6;
-
-function checkCities(guess){
-  return(cities.indexOf(guess.toLowerCase()) > -1);
-}
-while (!checkCities(guess) && remain > 0) {
-  guess = null;
-  while (!guess) {
-    guess = prompt(intro + 'Final question: Don has lived in 6 different cities.  Can you name one?\n\n' + remain + ' guesses remaining.');
-    intro = 'Don\'t give up that easily! \n\n';
-    console.log('City Guess #' + (6 - remain) + ': ' + guess);
-  }
-  remain --;
-  intro = 'Wrong!\n\n';
-}
-
-if (checkCities(guess)) {
-  score += 3;
-  intro = 'Correct!  You scored a total of ' + score + ' points.\n\n';
-} else {
-  intro = 'Wrong!  You scored a total of ' + score + ' points.\n\n';
-}
-
+intro = intro + 'That was ' + right + ' questions right out of 7. ';
 if (score == 11) {
   summary = 'Congrats on a perfect score, ' + myName + '!';
 } else if (score > 7) {
