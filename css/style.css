@@ -1,3 +1,25 @@
 body {
     background-image: url("https://c1.staticflickr.com/5/4052/4333573403_2fd304cdea_b.jpg");
+    /* Photo Attribution: https://www.flickr.com/photos/brookpeterson/4333573403 */
+    background-size: cover;
+    background-attachment: fixed;
+    position:absolute;
+    top:0; right:0;
+    bottom:0; left:0;
+    padding: 10px
+}
+
+* {
+  font-family:sans-serif;
+  color: rgb(50, 50, 50);
+}
+
+header {
+  text-align: center;
+}
+
+.softcheese {
+  background-color: rgba(255, 255, 200, 0.4);
+  padding: 10px;
+  margin: 15px;
 }
