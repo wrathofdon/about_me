@@ -13,6 +13,7 @@ var guess = null;
 var myName;
 var cities = ['newcastle', 'bellevue', 'seattle', 'renton', 'auburn', 'tacoma'];
 var teeth = 28;
+var correct = 0;
 
 while (!myName) {
   myName = prompt('Hi there, welcome to my page!  What is your name?');
@@ -41,6 +42,7 @@ for (var i = 0; i < 5; i++) {
 function checkAnswer(answer, guess) {
   if (guess.slice(0,1) == answer){
     score++;
+    correct++;
     return('Correct!  Your score is now ' + score + ' points.\n\n');
   } else {
     return('Wrong!  Your score remains at ' + score + ' points.\n\n');
@@ -71,6 +73,7 @@ function checkTeeth(guess){
 
 if (guess == 28) {
   score += 3;
+  correct++;
   intro = 'Correct!  Your score is now ' + score + '.\n\n';
 } else {
   intro = 'Wrong!  No more guesses!  Your score remains at ' + score + '.\n\n';
@@ -95,20 +98,23 @@ while (!checkCities(guess) && remain > 0) {
 
 if (checkCities(guess)) {
   score += 3;
+  correct++;
   intro = 'Correct!  You scored a total of ' + score + ' points.\n\n';
 } else {
   intro = 'Wrong!  You scored a total of ' + score + ' points.\n\n';
 }
 
+summary = 'You got ' + correct + ' out of 7 questions right.\n\n';
+
 if (score == 11) {
-  summary = 'Congrats on a perfect score, ' + myName + '!';
+  summary = summary + 'Congrats on a perfect score, ' + myName + '!';
 } else if (score > 7) {
-  summary = 'That\'s still way above average, ' + myName + '!';
+  summary = summary + 'That\'s still way above average, ' + myName + '!';
 } else if (score > 3) {
-  summary = 'Better study harder next time, ' + myName + '.';
+  summary = summary + 'Better study harder next time, ' + myName + '.';
 } else if (score > 0) {
-  summary = 'You would have been better off with random guessing, ' + myName + '.';
+  summary = summary + 'You would have been better off with random guessing, ' + myName + '.';
 } else {
-  summary = 'Were you trying to bomb on purpose, ' + myName + '?';
+  summary = summary + 'Were you trying to bomb on purpose, ' + myName + '?';
 }
 alert(intro + summary);
