@@ -63,7 +63,7 @@ if (guess == 28) {
   correct++;
   intro = 'Correct!  You\'ve answered ' + correct + ' out of 7 questions right, for a total of ' + score + ' points.\n\n';
 } else {
-  intro = 'Wrong!  No more guesses!  You\'ve answered ' + correct + ' out of 7 questions right, for a total of ' + score + ' points.\n\n';
+  intro = 'Wrong!  Don has 28 teeth.  No more guesses!  You\'ve answered ' + correct + ' out of 7 questions right, for a total of ' + score + ' points.\n\n';
 }
 
 guess = 'bad';
@@ -85,10 +85,12 @@ while (cities.indexOf(guess.toLowerCase()) == -1 && remain > 0) {
 if (cities.indexOf(guess.toLowerCase()) > -1) {
   score += 3;
   correct++;
-  intro = 'Correct!  You\'ve answered ' + correct + ' out of 7 questions right, for a total of ' + score + ' points.\n\n';
+  intro = 'Correct!';
 } else {
-  intro = 'Wrong!   You\'ve answered ' + correct + ' out of 7 questions right, for a total of ' + score + ' points.\n\n';
+  intro = 'Wrong!';
 }
+
+intro = intro + '  Don has lived in Newcastle, Bellevue, Seattle, Renton, Auburn, and Tacoma.\n\nYou\'ve answered ' + correct + ' out of 7 questions right, for a total of ' + score + ' points.\n\n'
 
 if (score == 11) {
   summary = summary + 'Congrats on a perfect score, ' + myName + '!';
