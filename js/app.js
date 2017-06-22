@@ -32,9 +32,9 @@ for (var i = 0; i < 5; i++) {
   if (guess.toLowerCase().slice(0,1) == answerKey[i]){
     score++;
     correct++;
-    intro = 'Correct!  Your score is now ' + score + ' points.\n\n';
+    intro = 'Correct!  You\'ve answered ' + correct + ' out of 7 questions right, for a total of ' + score + ' points.\n\n';
   } else {
-    intro = 'Wrong!  Your score remains at ' + score + ' points.\n\n';
+    intro = 'Wrong!  You\'ve answered ' + correct + ' out of 7 questions right, for a total of ' + score + ' points.\n\n';
   }
 }
 
@@ -61,9 +61,9 @@ while (guess != 28 && remain > 0) {
 if (guess == 28) {
   score += 3;
   correct++;
-  intro = 'Correct!  Your score is now ' + score + '.\n\n';
+  intro = 'Correct!  You\'ve answered ' + correct + ' out of 7 questions right, for a total of ' + score + ' points.\n\n';
 } else {
-  intro = 'Wrong!  No more guesses!  Your score remains at ' + score + '.\n\n';
+  intro = 'Wrong!  No more guesses!  You\'ve answered ' + correct + ' out of 7 questions right, for a total of ' + score + ' points.\n\n';
 }
 
 guess = 'bad';
@@ -85,12 +85,10 @@ while (cities.indexOf(guess.toLowerCase()) == -1 && remain > 0) {
 if (cities.indexOf(guess.toLowerCase()) > -1) {
   score += 3;
   correct++;
-  intro = 'Correct!  You scored a total of ' + score + ' points.\n\n';
+  intro = 'Correct!  You\'ve answered ' + correct + ' out of 7 questions right, for a total of ' + score + ' points.\n\n';
 } else {
-  intro = 'Wrong!  You scored a total of ' + score + ' points.\n\n';
+  intro = 'Wrong!   You\'ve answered ' + correct + ' out of 7 questions right, for a total of ' + score + ' points.\n\n';
 }
-
-summary = 'You got ' + correct + ' out of 7 questions right.\n\n';
 
 if (score == 11) {
   summary = summary + 'Congrats on a perfect score, ' + myName + '!';
